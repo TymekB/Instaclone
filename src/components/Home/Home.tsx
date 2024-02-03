@@ -1,15 +1,23 @@
-import {useNavigate} from "react-router-dom";
 import './style.css'
-import {LogOut} from "../Middleware/Authorization";
+import {GetLoggedUser, LogOut} from "../Middleware/Authorization";
 import logo from '../../assets/ig-logo.png';
-
-const Auth = () => {
-    const navigate = useNavigate();
-
-    console.log('test');
-}
+import {useNavigate} from "react-router-dom";
 
 const Home = () => {
+    const navigate = useNavigate();
+    const handleLogOut = () => {
+        LogOut();
+        navigate('/');
+    };
+
+    const handleUnloggedUser = () => {
+        GetLoggedUser().catch(() => {
+            navigate('/')
+        });
+    }
+
+    handleUnloggedUser();
+
     return (
         <div>
             <div>
@@ -28,7 +36,7 @@ const Home = () => {
                             <div className="d-flex flex-row">
                                 <ul className="list-inline m-0">
                                     <li className="list-inline-item ml-2">
-                                        <a onClick={LogOut}>Log out</a>
+                                        <a onClick={handleLogOut}>Log out</a>
                                     </li>
                                     <li className="list-inline-item ml-2 align-middle">
                                         <a href="#" className="link-menu">

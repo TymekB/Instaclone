@@ -1,12 +1,21 @@
 import {useNavigate} from 'react-router-dom';
 import React, {useState} from "react";
-import {LogIn} from "../Middleware/Authorization";
+import {LogIn, GetLoggedUser} from "../Middleware/Authorization";
 import './style.css'
 
 const LoginPage = () => {
     const [login, setLoginValue] = useState('');
     const [password, setPasswordValue] = useState('');
     const navigate = useNavigate();
+
+    const handleLoggedUser = () => {
+        GetLoggedUser()?.then((user) => {
+            console.log(user);
+            navigate('/home');
+        });
+    }
+
+    handleLoggedUser();
 
     const handleLogin = (event: React.MouseEvent<HTMLInputElement>) => {
         event.preventDefault();
