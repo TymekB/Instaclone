@@ -1,25 +1,39 @@
 import {useNavigate} from 'react-router-dom';
+import React, {useState} from "react";
+import {LogIn} from "../Middleware/Authorization";
 import './style.css'
-import React, {Component} from "react";
 
 const LoginPage = () => {
+    const [login, setLoginValue] = useState('');
+    const [password, setPasswordValue] = useState('');
     const navigate = useNavigate();
+
     const handleLogin = (event: React.MouseEvent<HTMLInputElement>) => {
         event.preventDefault();
 
-        navigate('/home');
+        LogIn(login, password).then(() => {
+            navigate('/home');
+        }).catch((error) => {
+            console.log(error);
+        });
     }
 
     return (
         <div>
-            <div className="login">
+             <div className="login">
                 <h1>
                     <img src="https://i.imgur.com/wvLiKam.png" width="200px" height="68px"/>
                 </h1>
 
                 <form action="" method="POST">
-                    <input placeholder="Username or email" type="text" name="username"/>
-                    <input placeholder="Password" type="password" name="password"/>
+                    <input placeholder="Username or email" type="text" name="username" value={login}
+                           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                               setLoginValue(event.target.value);
+                           }}/>
+                    <input placeholder="Password" type="password" name="password" value={password}
+                           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                               setPasswordValue(event.target.value);
+                           }}/>
 
                     <input type="submit" value="Log In" onClick={handleLogin}/><br/>
                 </form>
