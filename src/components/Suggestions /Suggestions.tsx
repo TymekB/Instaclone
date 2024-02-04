@@ -17,7 +17,7 @@ const Suggestions = () => {
     return (
         <div className="col-4">
             <div className="d-flex flex-row align-items-center">
-                <div
+                <a href={`/user/${loggedUser?.id}`}
                     className="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border sidenav-profile-photo">
                     <img src="https://via.placeholder.com/200x200" alt="..."
                          style={{
@@ -26,7 +26,7 @@ const Suggestions = () => {
                              position: "absolute",
                              left: 0
                          }}/>
-                </div>
+                </a>
                 <div className="profile-info ml-3">
                     <span className="profile-info-username">{loggedUser?.username}</span>
                     <span className="profile-info-name">{loggedUser?.email}</span>
