@@ -6,9 +6,10 @@ import React, {useEffect, useState} from "react";
 import Suggestions from "../Suggestions /Suggestions";
 import Users from "../Users/Users";
 import Posts from "../Posts/Posts";
+import User from "../../models/User";
 
 const Home = () => {
-    const [user, setUser] = useState<any>(null);
+    const [user, setUser] = useState<User|null>(null);
     const navigate = useNavigate();
     const handleLogOut = () => {
         LogOut();

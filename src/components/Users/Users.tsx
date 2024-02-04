@@ -1,8 +1,9 @@
 import {GetUsers} from "../User/User";
 import {useEffect, useState} from "react";
+import User from "../../models/User";
 
 const Users = () => {
-    const [users, setUsers] = useState<any>(null);
+    const [users, setUsers] = useState<User[]>([]);
 
     useEffect(() => {
         GetUsers().then((users) => {
@@ -15,7 +16,6 @@ const Users = () => {
         <div className="card">
             <div className="card-body d-flex justify-content-start">
                 <ul className="list-unstyled mb-0">
-
                     {users?.map((user: any) => (
                         <li className="list-inline-item">
                             <button className="btn p-0 m-0">

@@ -1,14 +1,23 @@
-const GetUsers = async () => {
+import User from "../../models/User";
+
+const GetUsers = async (): Promise<User[]> => {
     const response = await fetch('https://jsonplaceholder.typicode.com/users');
+
     return await response.json();
 };
 
-const GetUser = async (userId: number) => {
+const GetUser = async (userId: number): Promise<User> => {
     const users = await GetUsers();
-    return users.find((user: any) => user.id === userId);
+    const user = users.find((user: User): boolean => user.id === userId);
+
+    if(!user) {
+        throw new Error('User not found');
+    }
+
+    return new User(user.id, user.username, user.email);
 };
 
-const GetLoggedUser = () => {
+const GetLoggedUser = (): Promise<User> => {
     const userId = localStorage.getItem('userId');
 
     if(userId === null) {
@@ -22,10 +31,10 @@ const GetLoggedUser = () => {
 
 const LogIn = async (login: string, password: string) => {
     const users = await GetUsers();
-    const user = users.find((user: any) => user.email === login && password === 'placeholder');
+    const user = users.find((user: User) => user.email === login && password === 'placeholder');
 
     if (user) {
-        localStorage.setItem('userId', user.id);
+        localStorage.setItem('userId', String(user.id));
         return user;
     }
 
