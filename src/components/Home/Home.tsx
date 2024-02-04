@@ -1,6 +1,5 @@
 import './style.css'
-import {GetLoggedUser, LogOut} from "../User/User";
-import logo from '../../assets/ig-logo.png';
+import {GetLoggedUser} from "../../services/User";
 import {useNavigate} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import Suggestions from "../Suggestions /Suggestions";

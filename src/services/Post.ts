@@ -1,4 +1,4 @@
-import Post from "../../models/Post";
+import Post from "../models/Post";
 
 const GetAlbums = async (userId: number|null = null): Promise<any> => {
     let url = 'https://jsonplaceholder.typicode.com/albums';

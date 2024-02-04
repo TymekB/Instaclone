@@ -1,8 +1,8 @@
 import Comment from "../../models/Comment";
 import React, {useEffect, useState} from "react";
-import {AddComment, GetComments} from "../Comment/Comment";
+import {AddComment, GetComments} from "../../services/Comment";
 import User from "../../models/User";
-import {GetLoggedUser} from "../User/User";
+import {GetLoggedUser} from "../../services/User";
 
 const Comments = (props: any) => {
     const [comments, setComments] = useState<Comment[]>([]);

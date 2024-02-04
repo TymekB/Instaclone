@@ -1,9 +1,10 @@
 import {useEffect, useState} from "react";
-import GetPosts from "../User/UserPost";
+import GetPosts from "../../services/Post";
 import Post from "../../models/Post";
 import User from "../../models/User";
-import {GetUsers} from "../User/User";
+import {GetUsers} from "../../services/User";
 import Comments from "../Comments/Comments";
+import {useNavigate} from "react-router-dom";
 
 const Posts = (props: any) => {
     const [posts, setPosts] = useState<Post[]>([]);
@@ -47,7 +48,7 @@ const Posts = (props: any) => {
                                              left: 0
                                          }}/>
                                 </div>
-                                <span className="font-weight-bold">{user?.username}</span>
+                                <a href={`/user/${user?.id}`} className="font-weight-bold">{user?.username}</a>
                             </div>
                         </div>
                         <div className="card-body p-0">

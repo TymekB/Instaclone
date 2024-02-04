@@ -1,6 +1,6 @@
 import Navbar from "../Navbar/Navbar";
 import {useParams} from "react-router-dom";
-import {GetUser} from "../User/User";
+import {GetUser} from "../../services/User";
 import {useEffect, useState} from "react";
 import User from "../../models/User";
 import Posts from "../Posts/Posts";
@@ -43,6 +43,7 @@ const UserCard = () => {
             <div className="row">
                 <div className="col-sm-4"></div>
                 <div className="col-sm-4">
+                    {user === null ? <div>Loading...</div> : <Posts userId={user.id}/>}
                     <Posts userId={1}/>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-import Comment from "../../models/Comment";
+import Comment from "../models/Comment";
 
 const GetComments = async (): Promise<Comment[]> => {
     const response = await fetch(`https://jsonplaceholder.typicode.com/comments`);

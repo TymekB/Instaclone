@@ -1,6 +1,7 @@
 import {useNavigate} from 'react-router-dom';
 import React, {useState, useEffect} from "react";
-import {LogIn, GetLoggedUser} from "../User/User";
+import {LogIn, GetLoggedUser} from "../../services/User";
+import logo from "../../assets/ig-logo-lg.png";
 import './style.css'
 
 const LoginPage = () => {
@@ -32,7 +33,7 @@ const LoginPage = () => {
         <div>
              <div className="login">
                 <h1>
-                    <img src="https://i.imgur.com/wvLiKam.png" width="200px" height="68px"/>
+                    <img src={logo} width="200px" height="68px"/>
                 </h1>
 
                 <form action="" method="POST">

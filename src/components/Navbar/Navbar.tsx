@@ -1,7 +1,7 @@
-import logo from "../../assets/ig-logo.png";
+import logo from "../../assets/ig-logo-sm.png";
 import React from "react";
 import {useNavigate} from "react-router-dom";
-import {LogOut} from "../User/User";
+import {LogOut} from "../../services/User";
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -14,13 +14,13 @@ const Navbar = () => {
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container justify-content-center">
                 <div className="d-flex flex-row justify-content-between align-items-center col-9">
-                    <a className="navbar-brand" href="#">
+                    <a className="navbar-brand" href="/home">
                         <img src={logo} alt="" loading="lazy"/>
                     </a>
                     <div className="d-flex flex-row">
                         <ul className="list-inline m-0">
                             <li className="list-inline-item ml-2">
-                                <a onClick={handleLogOut}>Log out</a>
+                                <a href="#" onClick={handleLogOut}>Log out</a>
                             </li>
                             <li className="list-inline-item ml-2 align-middle">
                                 <a href="#" className="link-menu">

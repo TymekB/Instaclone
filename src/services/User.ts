@@ -1,5 +1,5 @@
-import User from "../../models/User";
-import Address from "../../models/Address";
+import User from "../models/User";
+import Address from "../models/Address";
 
 const GetUsers = async (): Promise<any[]> => {
     const response = await fetch('https://jsonplaceholder.typicode.com/users');

@@ -1,4 +1,4 @@
-import {GetUsers} from "../User/User";
+import {GetUsers} from "../../services/User";
 import {useEffect, useState} from "react";
 import User from "../../models/User";
 
