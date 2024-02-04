@@ -1,4 +1,4 @@
-import {GetUsers} from "../Authorization/User";
+import {GetUsers} from "../User/User";
 import {useEffect, useState} from "react";
 
 const Users = () => {

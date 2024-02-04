@@ -1,4 +1,4 @@
-import {GetLoggedUser} from "../Authorization/User";
+import {GetLoggedUser} from "../User/User";
 import {useEffect, useState} from "react";
 import instagram from "../../assets/suggestions/suggestion-1.jpg";
 import dccomics from "../../assets/suggestions/suggestion-2.png";

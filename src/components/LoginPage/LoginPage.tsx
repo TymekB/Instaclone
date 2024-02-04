@@ -1,6 +1,6 @@
 import {useNavigate} from 'react-router-dom';
 import React, {useState, useEffect} from "react";
-import {LogIn, GetLoggedUser} from "../Authorization/User";
+import {LogIn, GetLoggedUser} from "../User/User";
 import './style.css'
 
 const LoginPage = () => {
