@@ -9,7 +9,8 @@ import Posts from "../Posts/Posts";
 import User from "../../models/User";
 
 const Home = () => {
-    const [user, setUser] = useState<User|null>(null);
+    const [user, setUser] = useState<User | null>(null);
+    const [filter, setFilter] = useState('');
     const navigate = useNavigate();
     const handleLogOut = () => {
         LogOut();
@@ -42,7 +43,12 @@ const Home = () => {
                             <div>
                                 <form className="form-inline my-2 my-lg-0">
                                     <input className="form-control mr-sm-2" type="search" placeholder="Search"
-                                           aria-label="Search" />
+                                           aria-label="Search"
+                                           value={filter}
+                                           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                               setFilter(event.target.value);
+                                           }}/>
+
                                 </form>
                             </div>
                             <div className="d-flex flex-row">
@@ -77,7 +83,7 @@ const Home = () => {
                         <div className="row">
                             <div className="col-8">
                                 <Users/>
-                                <Posts/>
+                                <Posts filter={filter}/>
                             </div>
 
                             <Suggestions/>

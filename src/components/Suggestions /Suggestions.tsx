@@ -28,7 +28,7 @@ const Suggestions = () => {
                          }}/>
                 </div>
                 <div className="profile-info ml-3">
-                    <span className="profile-info-username">{loggedUser?.name}</span>
+                    <span className="profile-info-username">{loggedUser?.username}</span>
                     <span className="profile-info-name">{loggedUser?.email}</span>
                 </div>
             </div>

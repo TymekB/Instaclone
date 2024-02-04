@@ -3,37 +3,34 @@ import GetUserPosts from "../User/UserPost";
 import Post from "../../models/Post";
 import User from "../../models/User";
 import {GetUsers} from "../User/User";
-import GetComments from "../Comment/Comment";
-import Comment from "../../models/Comment";
+import Comments from "../Comments/Comments";
 
 const Posts = (props: any) => {
     const [posts, setPosts] = useState<Post[]>([]);
     const [users, setUsers] = useState<User[]>([]);
-    const [comments, setComments] = useState<Comment[]>([]);
 
     const findUserById = (userId: number): User | undefined => {
         return users.find((user: User) => user.id === userId);
     }
+
+    const filteredPosts = posts?.filter((post: Post) => {
+        return post.title.toLowerCase().includes(props.filter.toLowerCase());
+    });
 
     useEffect(() => {
         GetUserPosts().then((posts: Post[]) => {
             setPosts(posts);
         });
 
-        GetComments().then((comments: Comment[]) => {
-            setComments(comments);
-        });
-
         GetUsers().then((users: User[]) => {
             setUsers(users);
         });
-    });
+    }, []);
 
     return (
         <div className="d-flex flex-column mt-4 mb-4">
-            {posts?.map((post: Post) => {
+            {filteredPosts.map((post: Post) => {
                 const user = findUserById(post.userId);
-                const postComments = comments.filter((comment: Comment) => comment.postId === post.id);
 
                 return (
                     <div className="card">
@@ -113,30 +110,11 @@ const Posts = (props: any) => {
                                 <strong className="d-block">365.354 likes</strong>
                                 <strong className="d-block">{user?.username}</strong>
                                 <p className="d-block mb-1">{post.title}</p>
-                                <button className="btn p-0">
-                                    <span className="text-muted">{postComments?.length} comments</span>
-                                </button>
 
-                                <div>
-                                    {postComments?.map((comment: Comment) => (
-                                        <div>
-                                            <strong className="d-block">{comment.email}</strong>
-                                            <span>{comment.body}</span>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                <small className="text-muted">4 HOURS AGO</small>
+                                <Comments postId={post.id}/>
                             </div>
 
-                            <div className="position-relative comment-box">
-                                <form>
-                                    <input className="w-100 border-0 p-3 input-post"
-                                           placeholder="Add a comment..."/>
-                                    <button className="btn btn-primary position-absolute btn-ig">Post
-                                    </button>
-                                </form>
-                            </div>
+
                         </div>
                     </div>
                 )

@@ -9,4 +9,16 @@ const GetComments = async (): Promise<Comment[]> => {
     });
 }
 
-export default GetComments;
+const AddComment = async (comment: Comment) => {
+    const response = await fetch(`https://jsonplaceholder.typicode.com/comments`, {
+        method: 'POST',
+        body: JSON.stringify(comment),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    });
+
+    return await response.json();
+}
+
+export {GetComments, AddComment};
