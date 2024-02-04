@@ -1,9 +1,10 @@
 import './style.css'
-import {GetLoggedUser, GetUsers, LogOut} from "../Authorization/User";
+import {GetLoggedUser, LogOut} from "../Authorization/User";
 import logo from '../../assets/ig-logo.png';
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import Suggestions from "../Suggestions /Suggestions";
+import Users from "../Users/Users";
 
 const Home = () => {
     const [user, setUser] = useState<any>(null);
@@ -73,46 +74,7 @@ const Home = () => {
                     <div className="col-9">
                         <div className="row">
                             <div className="col-8">
-                                <div className="card">
-                                    <div className="card-body d-flex justify-content-start">
-                                        <ul className="list-unstyled mb-0">
-                                            <li className="list-inline-item">
-                                                <button className="btn p-0 m-0">
-                                                    <div className="d-flex flex-column align-items-center">
-                                                        <div
-                                                            className="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger story-profile-photo">
-                                                            <img src="assets/images/profiles/profile-1.jpg" alt="..."
-                                                                 style={{
-                                                                     transform: "scale(1.5)",
-                                                                     width: "100%",
-                                                                     position: "absolute",
-                                                                     left: 0
-                                                                 }}/>
-                                                        </div>
-                                                        <small>samkolder</small>
-                                                    </div>
-                                                </button>
-                                            </li>
-                                            <li className="list-inline-item">
-                                                <button className="btn p-0 m-0">
-                                                    <div className="d-flex flex-column align-items-center">
-                                                        <div
-                                                            className="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger story-profile-photo">
-                                                            <img src="assets/images/profiles/profile-2.jpg" alt="..."
-                                                                 style={{
-                                                                     transform: 'scale(1.5)',
-                                                                     width: '100%',
-                                                                     position: 'absolute',
-                                                                     left: 0,
-                                                                 }}/>
-                                                        </div>
-                                                        <small>petermckinnon</small>
-                                                    </div>
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                <Users/>
                                 <div className="d-flex flex-column mt-4 mb-4">
 
                                     <div className="card">
