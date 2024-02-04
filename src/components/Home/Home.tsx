@@ -12,7 +12,7 @@ import Navbar from "../Navbar/Navbar";
 const Home = () => {
     const [user, setUser] = useState<User | null>(null);
     const [filter, setFilter] = useState('');
-
+    const navigate = useNavigate();
 
     const handleUnloggedUser = () => {
         GetLoggedUser().catch(() => {

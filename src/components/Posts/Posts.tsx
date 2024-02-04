@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import GetUserPosts from "../User/UserPost";
+import GetPosts from "../User/UserPost";
 import Post from "../../models/Post";
 import User from "../../models/User";
 import {GetUsers} from "../User/User";
@@ -8,17 +8,18 @@ import Comments from "../Comments/Comments";
 const Posts = (props: any) => {
     const [posts, setPosts] = useState<Post[]>([]);
     const [users, setUsers] = useState<User[]>([]);
+    const filter = props.filter ? props.filter.toLowerCase() : '';
 
     const findUserById = (userId: number): User | undefined => {
         return users.find((user: User) => user.id === userId);
     }
 
     const filteredPosts = posts?.filter((post: Post) => {
-        return post.title.toLowerCase().includes(props.filter.toLowerCase());
+        return post.title.toLowerCase().includes(filter);
     });
 
     useEffect(() => {
-        GetUserPosts().then((posts: Post[]) => {
+        GetPosts(props.userId).then((posts: Post[]) => {
             setPosts(posts);
         });
 
@@ -113,8 +114,6 @@ const Posts = (props: any) => {
 
                                 <Comments postId={post.id}/>
                             </div>
-
-
                         </div>
                     </div>
                 )

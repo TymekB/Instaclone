@@ -1,6 +1,7 @@
 import User from "../../models/User";
+import Address from "../../models/Address";
 
-const GetUsers = async (): Promise<User[]> => {
+const GetUsers = async (): Promise<any[]> => {
     const response = await fetch('https://jsonplaceholder.typicode.com/users');
 
     return await response.json();
@@ -8,19 +9,26 @@ const GetUsers = async (): Promise<User[]> => {
 
 const GetUser = async (userId: number): Promise<User> => {
     const users = await GetUsers();
-    const user = users.find((user: User): boolean => user.id === userId);
+    const user = users.find((user: any): boolean => user.id === userId);
 
-    if(!user) {
+    if (!user) {
         throw new Error('User not found');
     }
 
-    return new User(user.id, user.username, user.email);
+    const address = new Address(
+        user.address.street,
+        user.address.suite,
+        user.address.city,
+        user.address.zipcode
+    );
+
+    return new User(user.id, user.username, user.email, address);
 };
 
 const GetLoggedUser = (): Promise<User> => {
     const userId = localStorage.getItem('userId');
 
-    if(userId === null) {
+    if (userId === null) {
         return new Promise((resolve, reject) => {
             reject();
         });
@@ -45,4 +53,4 @@ const LogOut = () => {
     localStorage.removeItem('userId')
 };
 
-export { GetLoggedUser, GetUsers, LogIn, LogOut };
+export {GetLoggedUser, GetUsers, GetUser, LogIn, LogOut};
