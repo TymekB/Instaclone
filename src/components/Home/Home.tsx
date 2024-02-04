@@ -1,9 +1,12 @@
 import './style.css'
-import {GetLoggedUser, LogOut} from "../Middleware/Authorization";
+import {GetLoggedUser, GetUsers, LogOut} from "../Authorization/User";
 import logo from '../../assets/ig-logo.png';
 import {useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
+import Suggestions from "../Suggestions /Suggestions";
 
 const Home = () => {
+    const [user, setUser] = useState<any>(null);
     const navigate = useNavigate();
     const handleLogOut = () => {
         LogOut();
@@ -16,7 +19,13 @@ const Home = () => {
         });
     }
 
-    handleUnloggedUser();
+    useEffect(() => {
+        handleUnloggedUser();
+
+        GetLoggedUser().then((user) => {
+            setUser(user);
+        });
+    }, []);
 
     return (
         <div>
@@ -42,7 +51,7 @@ const Home = () => {
                                         <a href="#" className="link-menu">
                                             <div
                                                 className="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border topbar-profile-photo">
-                                                <img src="assets/images/profiles/profile-6.jpg" alt="..."
+                                                <img src="https://via.placeholder.com/200x200" alt="..."
                                                      style={{
                                                          transform: "scale(1.5)",
                                                          width: "100%",
@@ -211,91 +220,11 @@ const Home = () => {
                                                     </button>
                                                 </form>
                                             </div>
-
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div className="col-4">
-                                <div className="d-flex flex-row align-items-center">
-                                    <div
-                                        className="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border sidenav-profile-photo">
-                                        <img src="assets/images/profiles/profile-6.jpg" alt="..."
-                                             style={{
-                                                 transform: "scale(1.5)",
-                                                 width: "100%",
-                                                 position: "absolute",
-                                                 left: 0
-                                             }}/>
-                                    </div>
-                                    <div className="profile-info ml-3">
-                                        <span className="profile-info-username">codingvenue</span>
-                                        <span className="profile-info-name">Coding Venue</span>
-                                    </div>
-                                </div>
-
-                                <div className="mt-4">
-                                    <div className="d-flex flex-row justify-content-between">
-                                        <small className="text-muted font-weight-normal">Suggestions For You</small>
-                                        <small>See All</small>
-                                    </div>
-                                    <div>
-                                        <div
-                                            className="d-flex flex-row justify-content-between align-items-center mt-3 mb-3">
-                                            <div className="d-flex flex-row align-items-center">
-                                                <div
-                                                    className="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border sugest-profile-photo">
-                                                    <img src="../../assets/profiles/profile-3.jpg" alt="..."
-                                                         style={{
-                                                             transform: "scale(1.5)",
-                                                             width: "100%",
-                                                             position: "absolute",
-                                                             left: 0
-                                                         }}/>
-                                                </div>
-                                                <strong className="ml-3 sugest-username">instagram</strong>
-                                            </div>
-                                            <button className="btn btn-primary btn-sm p-0 btn-ig ">Follow</button>
-                                        </div>
-                                        <div
-                                            className="d-flex flex-row justify-content-between align-items-center mt-3 mb-3">
-                                            <div className="d-flex flex-row align-items-center">
-                                                <div
-                                                    className="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border sugest-profile-photo">
-                                                    <img src="assets/images/profiles/profile-4.png" alt="..."
-                                                         style={{
-                                                             transform: "scale(1.5)",
-                                                             width: "100%",
-                                                             position: "absolute",
-                                                             left: 0
-                                                         }}/>
-                                                </div>
-                                                <strong className="ml-3 sugest-username">dccomics</strong>
-                                            </div>
-                                            <button className="btn btn-primary btn-sm p-0 btn-ig ">Follow</button>
-                                        </div>
-                                        <div
-                                            className="d-flex flex-row justify-content-between align-items-center mt-3 mb-3">
-                                            <div className="d-flex flex-row align-items-center">
-                                                <div
-                                                    className="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border sugest-profile-photo">
-                                                    <img src="assets/images/profiles/profile-5.jpg" alt="..."
-                                                         style={{
-                                                             transform: "scale(1.5)",
-                                                             width: "100%",
-                                                             position: "absolute",
-                                                             left: 0
-                                                         }}/>
-                                                </div>
-                                                <strong className="ml-3 sugest-username">thecw</strong>
-                                            </div>
-                                            <button className="btn btn-primary btn-sm p-0 btn-ig">Follow</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <Suggestions/>
                         </div>
                     </div>
                 </div>

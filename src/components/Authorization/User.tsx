@@ -1,5 +1,5 @@
 const GetUsers = async () => {
-    const response = await fetch('https://jsonplaceholder.org/users');
+    const response = await fetch('https://jsonplaceholder.typicode.com/users');
     return await response.json();
 };
 
@@ -22,7 +22,7 @@ const GetLoggedUser = () => {
 
 const LogIn = async (login: string, password: string) => {
     const users = await GetUsers();
-    const user = users.find((user: any) => user.email === login && password === user.login.password);
+    const user = users.find((user: any) => user.email === login && password === 'placeholder');
 
     if (user) {
         localStorage.setItem('userId', user.id);
@@ -36,4 +36,4 @@ const LogOut = () => {
     localStorage.removeItem('userId')
 };
 
-export { GetLoggedUser, LogIn, LogOut };
+export { GetLoggedUser, GetUsers, LogIn, LogOut };
